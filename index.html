@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Word Search Tool</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Word Search Tool</h1>
+    <form id="wordSearchForm" method="post">
+        <label for="inputText">Enter [subpage]:</label>
+        <input type="text" id="inputText" name="input_text">
+        <button type="submit">Search</button>
+    </form>
+    <p id="resultsParagraph"></p>
+
+    <script>
+        $(document).ready(function() {
+            $('#wordSearchForm').submit(function(event) {
+                event.preventDefault();
+                var inputText = $('#inputText').val();
+                $.post('/', {input_text: inputText}, function(data) {
+                    $('#resultsParagraph').text('Results: ' + data.results);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
